@@ -14,6 +14,16 @@ ATS (Applicant Tracking System) başvuru sistemleri CV'nizi önce bir yazılıml
 | [`tools/ats_check.py`](tools/ats_check.py) | CV'yi ilan metniyle karşılaştıran kontrol scripti |
 | [`examples/ilan.txt`](examples/ilan.txt) | Örnek iş ilanı |
 
+## Claude Code ile otomatik uyarlama
+
+Repo klasöründe Claude Code'u aç ve `/cv-uyarla` yaz. Akış:
+
+1. Mevcut CV'ni yüklemeni ister (`inputs/` klasörüne koyabilirsin).
+2. Başvuracağın ilanın linkini ister.
+3. CV'ni ilana göre ATS uyumlu hale getirip `output/` klasörüne yazar; ne değiştiğini ve eksik kalanları raporlar.
+
+Olmayan deneyim veya beceri eklenmez. `inputs/` ve `output/` git'e girmez.
+
 ## Hızlı başlangıç
 
 1. `templates/cv-tr.md` dosyasını kopyalayıp kendi bilgilerinle doldur.

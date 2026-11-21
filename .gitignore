@@ -4,3 +4,5 @@ __pycache__/
 cv.pdf
 *_CV.pdf
 my-cv*
+inputs/
+output/
