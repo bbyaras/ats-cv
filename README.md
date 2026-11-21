@@ -39,7 +39,7 @@ CV'nde olmayan bir şeyi eklemek istersen önce onayını alır; deneyim maddele
 python tools/ats_check.py templates/cv-tr.md examples/ilan.txt
 ```
 
-Çıktı: yapısal uyarılar, ilandaki anahtar kelimelerin CV'de geçme oranı ve eksik kelimeler.
+Çıktı: yapısal uyarılar, ilandaki anahtar kelimelerin CV'de geçme oranı, eksik kelimeler ve **ATS sonucu (GEÇER / RİSKLİ / GEÇEMEZ)**. İlan vermezsen yalnızca yapı kontrol edilir. Sonuç GEÇER değilse çıkış kodu 1 olur. Bu bir ön tahmindir, geçiş garantisi vermez.
 
 4. PDF üretmek için `templates/cv.html` dosyasını doldurup tarayıcıdan **Yazdır → PDF olarak kaydet** yap (metin seçilebilir kalır).
 

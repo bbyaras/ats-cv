@@ -47,6 +47,7 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
   2. Gereksinim oranı: ilandaki zorunlu gereksinimlerin kaçı CV'de karşılanıyor (tam = 1, zayıf/kısmi = 0,5, yok = 0) ve tercih edilenlerin kaçı karşılanıyor.
   3. **Genel uyumluluk = %50 zorunlu gereksinim + %20 tercih edilen + %30 anahtar kelime.** Tercih edilen gereksinim yoksa ağırlığı zorunluya ekle (%70 / %30).
   Hesabın dökümünü tablo olarak göster (gereksinim, durum, puan), tahmini bir değer olduğunu belirt. Her ilan için ayrı hesapla; CV'yi güncelledikten sonra 5. adımda tekrar hesapla (önce/sonra).
+- **ATS geçiş kontrolü:** `ats_check.py` sonunda GEÇER / RİSKLİ / GEÇEMEZ sonucu verir (kritik yapı sorunu varsa GEÇEMEZ, ilan eşleşmesi %50 altındaysa RİSKLİ). Bu sonucu uyarlamadan önce ve sonra kullanıcıya göster; GEÇEMEZ veya RİSKLİ ise teslimden önce düzelt. Garanti değil, ön tahmindir; öyle söyle.
 - PDF/DOCX CV'lerde `ats_check.py` yalnızca .md/.txt okur: önce metni `inputs/cv.md` olarak kaydet.
 
 ## 4. CV'yi uyarla
