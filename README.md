@@ -19,10 +19,15 @@ ATS (Applicant Tracking System) başvuru sistemleri CV'nizi önce bir yazılıml
 Repo klasöründe Claude Code'u aç ve `/cv-uyarla` yaz. Akış:
 
 1. Mevcut CV'ni yüklemeni ister (`inputs/` klasörüne koyabilirsin).
-2. Başvuracağın ilanın linkini ister.
-3. CV'ni ilana göre ATS uyumlu hale getirip `output/` klasörüne yazar; ne değiştiğini ve eksik kalanları raporlar.
+2. Başvuracağın ilanın linkini ister. İlanın yoksa hedef pozisyon, sektör, kıdem, öne çıkarmak istediklerin gibi sorular sorar.
+   Birden fazla ilan verirsen her biri için ayrı CV hazırlanır ve her başvuruda öne çıkarmak istediğin özellikleri sorar.
+   CV ile ilan arasındaki **uyumluluk oranını** (zorunlu gereksinim %50, tercih edilen %20, anahtar kelime %30) önce/sonra olarak hesaplar.
+   Çıktı formatını sorar (PDF, DOCX, Markdown); **başvuruyu PDF olarak göndermeni önerir** ve PDF'i Edge ile üretir.
+   En sonda CV'nin profesyonel bir İK uzmanı gözüyle incelenmesini isteyip istemediğini sorar; istersen puan, güçlü yönler ve öncelikli düzeltmeleri verir.
+   İstersen CV'ndeki özelliklere göre güncel iş ilanları da bulur; seçtiğin ilanlar için ayrı CV hazırlar. Başvuruyu senin adına göndermez.
+3. CV'ni ilana (veya cevaplarına) göre ATS uyumlu hale getirip `output/` klasörüne yazar; ne değiştiğini ve eksik kalanları raporlar.
 
-Olmayan deneyim veya beceri eklenmez. `inputs/` ve `output/` git'e girmez.
+CV'nde olmayan bir şeyi eklemek istersen önce onayını alır; deneyim maddeleri için sayısal sonuçlar (yüzde, süre, hacim, ekip büyüklüğü) sorarak CV'yi somutlaştırır. Onaysız veya uydurma bilgi eklenmez. `inputs/` ve `output/` git'e girmez.
 
 ## Hızlı başlangıç
 
