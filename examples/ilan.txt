@@ -1,0 +1,10 @@
+Backend Developer (Python)
+
+Aradığımız nitelikler:
+- Python ve FastAPI ile REST API geliştirme deneyimi
+- PostgreSQL ve SQL sorgu optimizasyonu
+- Docker ve CI/CD süreçlerine hakimiyet
+- AWS veya benzeri bulut servislerinde deneyim
+- Agile / Scrum takımlarında çalışmış olmak
+- Kubernetes bilgisi artı değerdir
+- Takım çalışmasına yatkın, iletişimi güçlü

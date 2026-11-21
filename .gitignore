@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+# Kişisel CV'ler repoya girmesin
+cv.pdf
+*_CV.pdf
+my-cv*
