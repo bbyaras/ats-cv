@@ -1,6 +1,6 @@
 # ATS Uyumlu CV Hazırlama
 
-ATS (Applicant Tracking System) başvuru sistemleri CV'nizi önce bir yazılımla okur. Bu repo, CV'nizin bu yazılımlar tarafından doğru okunmasını sağlamak için şablon, rehber ve basit bir kontrol aracı içerir. Şablonlar ve rehber, ulusal bir firmada çalışan bir İK uzmanı tarafından kontrol edilmiştir.
+ATS (Applicant Tracking System) başvuru sistemleri CV'nizi önce bir yazılımla okur. Bu repo, CV'nizin bu yazılımlar tarafından doğru okunmasını sağlamak için şablon, rehber ve basit bir kontrol aracı içerir. Şablonlar ve rehber, İK uzmanları tarafından kontrol edilmektedir.
 
 ## İçerik
 
