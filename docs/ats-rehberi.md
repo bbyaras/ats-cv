@@ -16,7 +16,7 @@ Parse bozulursa (tablo, sütun, görsel) bilgiler yanlış alana düşer veya ka
 - **Her deneyim:** Pozisyon, Şirket, Şehir, Tarih, 3–6 madde.
 - **Maddeler eylemle başlasın ve sayı içersin:** "Sipariş işleme süresini %30 azalttım".
 - **İlandaki terimleri aynen kullan** (ör. "Proje Yönetimi", "SQL", "Agile"). Kısaltmanın yanında açılımını da yaz: "Arama Motoru Optimizasyonu (SEO)".
-- **Dosya:** `.docx` veya metin tabanlı PDF. Dosya adı: `Ad_Soyad_CV.pdf`.
+- **Dosya:** İlan hangi formatı istiyorsa onu gönder. Belirtilmemişse metin tabanlı PDF (veya `.docx`). Dosya adı: `Ad_Soyad_CV.pdf`.
 - **Yazı tipi:** Arial, Calibri, Times New Roman; 10–12 pt. Başlıklar 12–14 pt.
 - **Uzunluk:** 1 sayfa (0–8 yıl), en fazla 2 sayfa.
 - **İletişim bilgisi sayfanın gövdesinde** olsun: e-posta, telefon, şehir, LinkedIn.
@@ -24,7 +24,7 @@ Parse bozulursa (tablo, sütun, görsel) bilgiler yanlış alana düşer veya ka
 ## Kaçınılması gerekenler
 
 - Tablo, çok sütun, metin kutusu.
-- Header/footer içine iletişim bilgisi koymak (çoğu ATS okumaz).
+- Header/footer içine iletişim bilgisi koymak (bazı ATS'ler üst/alt bilgiyi okumaz, sistemden sisteme değişir).
 - Fotoğraf, ikon, grafik, ilerleme çubuğu ("Python ●●●●○").
 - Resim olarak taranmış PDF.
 - Süslü madde işaretleri; sade `-` veya `•` kullan.

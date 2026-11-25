@@ -48,7 +48,14 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
   3. **Genel uyumluluk = %50 zorunlu gereksinim + %20 tercih edilen + %30 anahtar kelime.** Tercih edilen gereksinim yoksa ağırlığı zorunluya ekle (%70 / %30).
   Hesabın dökümünü tablo olarak göster (gereksinim, durum, puan), tahmini bir değer olduğunu belirt. Her ilan için ayrı hesapla; CV'yi güncelledikten sonra 5. adımda tekrar hesapla (önce/sonra).
 - **ATS geçiş kontrolü:** `ats_check.py` sonunda GEÇER / RİSKLİ / GEÇEMEZ sonucu verir (kritik yapı sorunu varsa GEÇEMEZ, ilan eşleşmesi %50 altındaysa RİSKLİ). Bu sonucu uyarlamadan önce ve sonra kullanıcıya göster; GEÇEMEZ veya RİSKLİ ise teslimden önce düzelt. Garanti değil, ön tahmindir; öyle söyle.
-- PDF/DOCX CV'lerde `ats_check.py` yalnızca .md/.txt okur: önce metni `inputs/cv.md` olarak kaydet.
+- `ats_check.py` .md, .txt, .docx ve .pdf okur (PDF için `pypdf` veya `pdftotext` gerekir; yoksa `pip install pypdf` öner). Teslim edilecek **son PDF/DOCX dosyasını** da kontrol et: metin doğru çıkıyor mu, sayfa sayısı 2'yi geçiyor mu.
+- Eşleşme sayısı "ilan anahtar kelime eşleşmesi"dir; gerçek ATS'ler adaya oran göstermez. Sonucu "tahmin" olarak sun, "geçer/geçemez"i garanti gibi söyleme. Eksik kelimeler için her zaman "gerçekten sahipsen ekle" de.
+
+### LinkedIn Yetenekler eşleşmesi (ilan LinkedIn'deyse)
+- İlan sayfasındaki "Yetenekler" (Skills) eşleşme listesini oku. Sayfa giriş istiyorsa kullanıcı **kendisi** giriş yapsın ya da listenin ekran görüntüsünü versin; bu adımı atlama, "başvurmaya hazır" demeden önce yap.
+- Her yetenek için tablo: yetenek · CV'de var mı · profilde var mı · kanıt (hangi deneyim).
+- Kullanıcı onaylarsa, gerçekten sahip olduklarını ilandaki yazımıyla CV'ye ekle (Yetenekler bölümü + ilgili deneyim maddesi) ve "LinkedIn profilindeki Yetenekler'e de ekle" listesini ver. Çoğu zaman yetenek vardır, yalnız farklı kelimeyle yazılmıştır.
+- Olmayanları asla ekleme; "açık" olarak raporla ve 6. adımdaki İK incelemesinde mülakat riski olarak işaretle (mülakatta bu sorulursa ne denileceğini hazırla).
 
 ## 4. CV'yi uyarla
 `docs/ats-rehberi.md` kurallarına uy: tek sütun, standart başlıklar, tutarlı tarih, eylemle başlayan ve ölçülebilir maddeler, en fazla 2 sayfa.
@@ -64,12 +71,12 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
 - Her ilan için sonucu ayrı `output/cv-<sirket>.md` olarak yaz; `ats_check.py` ile tekrar çalıştır, eşleşme düşükse (ve kullanıcı sahipse) iyileştir.
 - Kullanıcıya şunu sun: ne değiştirdin, eşleşme oranı öncesi/sonrası, hâlâ eksik olan gereksinimler. Birden çok ilanda tüm CV'leri tek tabloda özetle (ilan, öne çıkarılanlar, eşleşme %).
 - **Formatı sor:** Teslimden önce `AskUserQuestion` ile CV'yi hangi formatta istediğini sor: PDF (önerilen), DOCX, Markdown/metin. Seçenekler arasında PDF'i ilk sırada "(Önerilen)" olarak ver.
-- **PDF vurgusu:** Kullanıcıya açıkça söyle: başvuruyu PDF olarak göndermek gerekir; PDF yazı tipi ve düzeni bozulmadan her cihazda aynı görünür. Metin tabanlı (metni seçilebilen) PDF olmalı, resim/tarama olmamalı. İlan özellikle DOCX istiyorsa onu üret, ama bunu kullanıcıya belirt.
+- **PDF vurgusu:** Kullanıcıya açıkça söyle: başvuruda PDF genellikle en güvenli seçimdir; yazı tipi ve düzen bozulmadan her cihazda aynı görünür. Metin tabanlı (metni seçilebilen) PDF olmalı, resim/tarama olmamalı. **İlan veya başvuru formu hangi formatı istiyorsa onu gönder** (ör. DOCX); bu durumda o formatı üret ve kullanıcıya belirt.
 - PDF üretimi: CV'yi `templates/cv.html` yapısında HTML'e dök (`output/cv-<sirket>.html`), sonra Edge ile PDF'e çevir:
   ```powershell
   & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --no-pdf-header-footer "--print-to-pdf=<tam yol>\output\Ad_Soyad_CV.pdf" "file:///<tam yol>/output/cv-<sirket>.html"
   ```
-  Dosya oluştu mu ve boyutu sıfırdan büyük mü kontrol et. Edge yoksa Chrome'u aynı bayraklarla dene; ikisi de yoksa HTML'i verip tarayıcıdan Yazdır → PDF olarak kaydetmesini söyle.
+  Dosya oluştu mu ve boyutu sıfırdan büyük mü kontrol et. Edge yoksa (veya Mac/Linux'ta) Chrome'u aynı bayraklarla dene (Mac: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, Linux: `google-chrome`); ikisi de yoksa HTML'i verip tarayıcıdan Yazdır → PDF olarak kaydetmesini söyle.
 - Çok sayfalı çıktıda sayfa sayısını kontrol et (en fazla 2).
 
 ## 6. İK uzmanı incelemesi (son adım)
