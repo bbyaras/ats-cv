@@ -17,7 +17,7 @@ from collections import Counter
 from pathlib import Path
 
 SECTIONS = {
-    "Deneyim": ["deneyim", "experience", "work history", "iş geçmişi"],
+    "Deneyim": ["deneyim", "tecrübe", "experience", "employment", "work history", "iş geçmişi"],
     "Eğitim": ["eğitim", "egitim", "education", "öğrenim"],
     "Yetenekler": ["yetenek", "beceri", "yetkinlik", "uzmanlık", "skills", "competenc", "expertise"],
 }
@@ -66,21 +66,31 @@ def is_stop(t: str) -> bool:
 
 
 _TOKEN = re.compile(r"[a-zçğıöşü0-9][a-zçğıöşü0-9+#./-]*[a-zçğıöşü0-9+#]|[a-zçğıöşü]")
+KEEP_SLASH = {"ci/cd", "tcp/ip", "pl/sql", "a/b", "i/o"}  # bölünmeyen terimler
+SHORT_OK = {"ai", "ml", "ux", "ui", "bi", "hr", "it", "qa", "ar", "vr", "pm"}  # 2 harfli terimler (yalnız BÜYÜK yazıldığında)
 
 
-def tokens_surface(text: str) -> list[tuple[str, str]]:
-    """(karşılaştırma_anahtarı, gösterim) çiftleri. c++, c#, ci/cd gibi terimler korunur.
+def tokens_surface(text: str) -> list[tuple[str, str, bool]]:
+    """(karşılaştırma_anahtarı, gösterim, büyük_harf_mi) üçlüleri.
+    c++, c#, ci/cd gibi terimler korunur; "Satış/Pazarlama" gibi eğik çizgili ifadeler bölünür.
     Gösterim, metindeki orijinal yazılıştır (büyük harfli kelimelerde katlanmış hâl)."""
     folded = fold(lower_tr(text))
     out = []
     for m in _TOKEN.finditer(folded):
         raw = text[m.start():m.end()]
-        out.append((m.group(), m.group() if raw.isupper() else lower_tr(raw)))
+        if "/" in m.group() and m.group() not in KEEP_SLASH:
+            pairs = zip(m.group().split("/"), raw.split("/"))
+        else:
+            pairs = [(m.group(), raw)]
+        for key, r in pairs:
+            if key:
+                up = r.isupper()
+                out.append((key, key if up else lower_tr(r), up))
     return out
 
 
 def tokens(text: str) -> list[str]:
-    return [k for k, _ in tokens_surface(text)]
+    return [k for k, _, _ in tokens_surface(text)]
 
 
 # ---------- Dosya okuma ----------
@@ -197,8 +207,8 @@ def main() -> int:
         ilan = load(a.ilan)[0]
         surface: dict[str, str] = {}  # kök → ilandaki ilk yazılış (gösterim için)
         counts: Counter = Counter()
-        for t, shown in tokens_surface(ilan):
-            if len(t) > 2 and not is_stop(t):
+        for t, shown, upper in tokens_surface(ilan):
+            if (len(t) > 2 or (upper and t in SHORT_OK)) and not is_stop(t):
                 k = stem(t)
                 # Gösterimde "ı" içeren (doğru Türkçe) yazılışı tercih et
                 if k not in surface or ("ı" in shown and "ı" not in surface[k]):

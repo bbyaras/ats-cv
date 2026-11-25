@@ -13,6 +13,7 @@ ATS (Applicant Tracking System) başvuru sistemleri CV'nizi önce bir yazılıml
 | [`templates/cv-en.md`](templates/cv-en.md) | İngilizce CV şablonu (Markdown) |
 | [`templates/cv.html`](templates/cv.html) | Tek sütunlu, yazdırmaya hazır HTML şablonu (PDF'e çevrilir) |
 | [`tools/ats_check.py`](tools/ats_check.py) | CV'yi ilan metniyle karşılaştıran kontrol scripti |
+| [`tools/build_pdf.py`](tools/build_pdf.py) | Markdown CV'yi ATS uyumlu PDF'e çevirir (Edge/Chrome ile) |
 | [`examples/ilan.txt`](examples/ilan.txt) | Örnek iş ilanı |
 
 ## Claude Code ile otomatik uyarlama

@@ -10,6 +10,7 @@ Adımları sırayla izle. Bir adımın girdisi gelmeden sonrakine geçme.
 ## 1. Mevcut CV'yi iste
 Kullanıcıdan mevcut CV'sini yüklemesini (dosya yolu: PDF, DOCX, MD, TXT) ya da metnini yapıştırmasını iste. Sadece bunu sor ve cevabı bekle.
 - Dosyayı `inputs/` klasörüne koymasını öner (git'e girmez).
+- **Gizlilik uyarısı (kısa, bir kez söyle):** CV içeriği bu oturumda yapay zekâ sağlayıcısının sunucularına gönderilir; `inputs/` yalnızca git'e girmez. Yüklemeden önce TC kimlik no, tam ev adresi, referans kişilerin telefonları gibi gereksiz kişisel bilgileri çıkarmasını öner.
 - PDF/DOCX ise metni çıkar ve doğru okunup okunmadığını (sütun, tablo bozulması) kullanıcıya kısaca bildir.
 
 ## 2. İlan linkini iste
@@ -42,7 +43,8 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
 ## 3. Analiz
 - İlandan (veya hedef profilinden) zorunlu ve tercih edilen gereksinimleri, araçları, anahtar kelimeleri çıkar.
 - CV ile eşleştir: karşılanan, zayıf anlatılan, eksik olanlar.
-- **Uyumluluk oranını hesapla** ve uyarlamadan ÖNCE kullanıcıya göster:
+- **Gerçek bir ilan yoksa (hedef profili modu) uyumluluk oranı BASMA.** Anahtar kelimeleri kendin türetip CV'yi onlara göre puanlamak gerçek bir ilana uyumu göstermez. Bu modda sadece yapı kontrolü (`ats_check.py` ilansız), CV güçlendirme (somut veri, anahtar kelime önerileri) ve 6. adımdaki İK incelemesi yapılır; gerçek bir ilan bulunduğunda oranı o zaman hesapla.
+- **Uyumluluk oranını hesapla** (yalnızca gerçek ilan varsa) ve uyarlamadan ÖNCE kullanıcıya göster:
   1. Anahtar kelime oranı: `python tools/ats_check.py inputs/cv.md inputs/ilan.txt` çıktısındaki %.
   2. Gereksinim oranı: ilandaki zorunlu gereksinimlerin kaçı CV'de karşılanıyor (tam = 1, zayıf/kısmi = 0,5, yok = 0) ve tercih edilenlerin kaçı karşılanıyor.
   3. **Genel uyumluluk = %50 zorunlu gereksinim + %20 tercih edilen + %30 anahtar kelime.** Tercih edilen gereksinim yoksa ağırlığı zorunluya ekle (%70 / %30).
@@ -72,11 +74,11 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
 - Kullanıcıya şunu sun: ne değiştirdin, eşleşme oranı öncesi/sonrası, hâlâ eksik olan gereksinimler. Birden çok ilanda tüm CV'leri tek tabloda özetle (ilan, öne çıkarılanlar, eşleşme %).
 - **Formatı sor:** Teslimden önce `AskUserQuestion` ile CV'yi hangi formatta istediğini sor: PDF (önerilen), DOCX, Markdown/metin. Seçenekler arasında PDF'i ilk sırada "(Önerilen)" olarak ver.
 - **PDF vurgusu:** Kullanıcıya açıkça söyle: başvuruda PDF genellikle en güvenli seçimdir; yazı tipi ve düzen bozulmadan her cihazda aynı görünür. Metin tabanlı (metni seçilebilen) PDF olmalı, resim/tarama olmamalı. **İlan veya başvuru formu hangi formatı istiyorsa onu gönder** (ör. DOCX); bu durumda o formatı üret ve kullanıcıya belirt.
-- PDF üretimi: CV'yi `templates/cv.html` yapısında HTML'e dök (`output/cv-<sirket>.html`), sonra Edge ile PDF'e çevir:
+- PDF üretimi: HTML'i elle yazma; kontrol ettiğin `.md` dosyasından betikle üret, böylece PDF ile kontrol edilen metin aynı olur:
   ```powershell
-  & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --no-pdf-header-footer "--print-to-pdf=<tam yol>\output\Ad_Soyad_CV.pdf" "file:///<tam yol>/output/cv-<sirket>.html"
+  python tools/build_pdf.py output/cv-<sirket>.md --out output/Ad_Soyad_CV.pdf
   ```
-  Dosya oluştu mu ve boyutu sıfırdan büyük mü kontrol et. Edge yoksa (veya Mac/Linux'ta) Chrome'u aynı bayraklarla dene (Mac: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, Linux: `google-chrome`); ikisi de yoksa HTML'i verip tarayıcıdan Yazdır → PDF olarak kaydetmesini söyle.
+  Betik Edge veya Chrome'u (Windows/Mac/Linux) kendisi bulur. Bulamazsa HTML üretir; kullanıcıya tarayıcıdan Yazdır → PDF yapmasını söyle. Sonra **son PDF'i** `python tools/ats_check.py output/Ad_Soyad_CV.pdf inputs/ilan.txt` ile yeniden kontrol et.
 - Çok sayfalı çıktıda sayfa sayısını kontrol et (en fazla 2).
 
 ## 6. İK uzmanı incelemesi (son adım)

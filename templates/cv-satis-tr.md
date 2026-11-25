@@ -34,6 +34,10 @@ Satış yönetimi ve bayi ağı geliştirme alanında 8 yıl deneyimli bölge sa
 
 - Sertifika Adı (Yıl)
 
+## Ek Bilgiler
+
+- Askerlik: Yapıldı | Sürücü belgesi: B | Seyahat engeli: Yok
+
 ## Diller
 
 - Türkçe: Ana dil

@@ -45,3 +45,11 @@ Sahip olmadığın beceriyi yazma; mülakatta ortaya çıkar.
 
 - Türkçe karakterler (ç, ğ, ı, ö, ş, ü) UTF-8 PDF/DOCX'te sorun çıkarmaz; dosya adında yine de kullanma.
 - İngilizce ilana İngilizce CV gönder. Türkçe ve İngilizce terimi birlikte geçirmek eşleşmeyi artırır: "Veri Analizi (Data Analysis)".
+
+## Türkiye'ye özgü notlar
+
+- **Fotoğraf:** ATS'ye yüklenecek CV'de fotoğraf kullanma (okunmaz, düzeni bozabilir). Doğrudan İK'ya e-postayla gönderdiğin CV'de fotoğraf Türkiye'de hâlâ yaygındır; istersen iki sürüm tut: ATS için fotoğrafsız, e-posta için fotoğraflı. Yurt dışı başvurularında fotoğraf koyma.
+- **Askerlik, sürücü belgesi, seyahat engeli:** Özellikle saha/satış ilanlarında sık sorulur. İlan istiyorsa kısa bir "Ek Bilgiler" bölümüne yaz (ör. `Askerlik: Yapıldı | Sürücü belgesi: B | Seyahat engeli: Yok`). İlan sormuyorsa ekleme.
+- **Başvuru formundaki ön eleme soruları:** "Çalışma izniniz var mı", "en az X yıl deneyim", "maaş beklentisi" gibi sorular birçok sistemde ilk elemeyi yapar (sistemden sisteme değişir). Dürüst ve dikkatli yanıtla.
+- **Workday, SuccessFactors gibi sistemler:** CV yüklemek bazı alanları otomatik doldurur; yüklemeden sonra açılan formda unvan, şirket ve tarihleri kontrol edip düzelt.
+- **Kariyer.net:** İK'lar şehir, sektör, askerlik gibi filtrelerle arama yapabilir; profildeki bu alanları doldur.

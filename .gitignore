@@ -4,5 +4,13 @@ __pycache__/
 cv.pdf
 *_CV.pdf
 my-cv*
+# Kökte kaydedilen kişisel CV'ler (şablonlar templates/ içinde, etkilenmez)
+*.pdf
+*.docx
+/cv*
+/CV*
+/ozgecmis*
+/Ozgecmis*
+/*_CV*
 inputs/
 output/
