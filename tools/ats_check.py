@@ -35,7 +35,7 @@ sorumluluklar sorumlulukları görevler sizi büyümek istediğimiz özellikler 
 _STOP_EN = """
 the and or for with a an to of in on is are be as at by we you our your will
 have has experience knowledge ability work working years year plus strong
-looking join team role position candidate candidates must should responsibilities
+this level seniority looking join team role position candidate candidates must should responsibilities
 requirements qualifications about us what offer benefits
 """
 
