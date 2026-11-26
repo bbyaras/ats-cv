@@ -84,6 +84,7 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
   python tools/build_pdf.py output/cv-<sirket>.md --out output/Ad_Soyad_CV.pdf
   ```
   Betik Edge veya Chrome'u (Windows/Mac/Linux) kendisi bulur. Bulamazsa HTML üretir; kullanıcıya tarayıcıdan Yazdır → PDF yapmasını söyle. Sonra **son PDF'i** `python tools/ats_check.py output/Ad_Soyad_CV.pdf inputs/ilan.txt` ile yeniden kontrol et.
+- Seçenekler: `--font 10` 2 sayfaya sığdırmak için yazıyı küçültür (10–12 pt aralığında kal); `--justify` paragraf ve maddeleri iki yana yaslar. `--justify`'ı yalnızca kullanıcı isterse ekle (varsayılan sola yaslı) ve kullandıysan PDF'i açıp kelime aralarında büyük boşluk oluşup oluşmadığına bak.
 - Çok sayfalı çıktıda sayfa sayısını kontrol et (en fazla 2).
 - **Sayfa yerleşimi:** `ats_check.py` PDF'te yalnız kalan başlığı, rolün ortasında başlayan sayfayı ve neredeyse boş son sayfayı uyarır. Bu metne dayalı yaklaşık bir kontroldür; PDF'i ayrıca gözünle de aç ve bak. Düzeltmek için önce ilanla en az ilgili satırları kısalt.
 
