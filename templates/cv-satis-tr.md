@@ -9,20 +9,20 @@ Satış yönetimi ve bayi ağı geliştirme alanında 8 yıl deneyimli bölge sa
 ## İş Deneyimi
 
 **Bölge Satış Müdürü** — Şirket Adı, İzmir
-03/2020 – Günümüz
+03/2020 - Günümüz
 - 12 bayilik ağı yönetti; yıllık satış hedefini %115 oranında gerçekleştirdim.
 - CRM ile satış sürecini haftalık raporlayarak fırsat kaybını azalttım.
 - 6 kişilik saha ekibine liderlik ettim; yeni başlayanlar için eğitim programı kurdum.
 
 **Satış Temsilcisi** — Önceki Şirket, İzmir
-06/2016 – 02/2020
+06/2016 - 02/2020
 - Haftada ortalama 15 müşteri ziyareti planlayarak yeni müşteri sayısını yılda 40 artırdım.
 - Sözleşme müzakerelerini yürüterek ortalama sipariş tutarını %12 yükselttim.
 
 ## Eğitim
 
 **İşletme, Lisans** — Üniversite Adı, Şehir
-09/2012 – 06/2016
+09/2012 - 06/2016
 
 ## Yetenekler
 

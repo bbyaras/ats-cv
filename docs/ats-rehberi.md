@@ -12,7 +12,8 @@ Parse bozulursa (tablo, sütun, görsel) bilgiler yanlış alana düşer veya ka
 
 - **Tek sütun** ve yukarıdan aşağı akış.
 - **Standart başlıklar:** Özet, İş Deneyimi, Eğitim, Yetenekler, Sertifikalar, Projeler, Diller.
-- **Tarih formatı tutarlı:** `03/2022 – 08/2024` veya `Mart 2022 – Ağustos 2024`.
+- **Tarih formatı tutarlı:** `03/2022 - 08/2024` veya `Mart 2022 - Ağustos 2024`.
+- **Tarih aralığında düz tire (`-`) kullan,** uzun tire (– —) değil: bazı sistemler tarihi içe aktaramayabilir.
 - **Her deneyim:** Pozisyon, Şirket, Şehir, Tarih, 3–6 madde.
 - **Maddeler eylemle başlasın ve sayı içersin:** "Sipariş işleme süresini %30 azalttım".
 - **İlandaki terimleri aynen kullan** (ör. "Proje Yönetimi", "SQL", "Agile"). Kısaltmanın yanında açılımını da yaz: "Arama Motoru Optimizasyonu (SEO)".
@@ -40,6 +41,11 @@ Parse bozulursa (tablo, sütun, görsel) bilgiler yanlış alana düşer veya ka
 4. Her ilan için CV'yi küçük ölçüde uyarla; `tools/ats_check.py` ile eksikleri gör.
 
 Sahip olmadığın beceriyi yazma; mülakatta ortaya çıkar.
+
+### Yankı tuzakları
+
+- Araç, yöntem, sertifika ve unvan adlarını aynen kullan; ilanın **cümlelerini** kopyalama. 5 ve daha fazla ardışık kelime kopyaysa cümleyi kendi deneyiminden yeniden yaz. İşe alımcı kendi cümlesini tanır.
+- %100 anahtar kelime eşleşmesini hedefleme; yalnız skor için eklenen klişe ifadeler CV'yi zayıflatır.
 
 ## Türkçe CV notları
 

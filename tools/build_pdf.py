@@ -26,6 +26,8 @@ ul { padding-left: 16pt; }
 li, p { break-inside: avoid; }
 """
 
+JUSTIFY = "p, li { text-align: justify; }"
+
 
 def inline(text: str) -> str:
     return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html.escape(text))
@@ -46,7 +48,7 @@ def upper(text: str, lang: str) -> str:
     return text.upper()
 
 
-def md_to_html(md: str, title: str, font: float = 11, lang: str | None = None) -> str:
+def md_to_html(md: str, title: str, font: float = 11, lang: str | None = None, justify: bool = False) -> str:
     lang = lang or detect_lang(md)
     out, para, items = [], [], []
 
@@ -80,7 +82,7 @@ def md_to_html(md: str, title: str, font: float = 11, lang: str | None = None) -
     flush()
     body = "\n".join(out)
     return (f'<!doctype html>\n<html lang="{lang}">\n<head>\n<meta charset="utf-8">\n<title>{html.escape(title)}</title>\n'
-            f"<style>{CSS.replace('{FONT}', str(font))}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n")
+            f"<style>{CSS.replace('{FONT}', str(font))}{JUSTIFY if justify else ''}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n")
 
 
 def find_browser() -> str | None:
@@ -103,13 +105,14 @@ def main() -> int:
     ap.add_argument("md")
     ap.add_argument("--out", help="PDF yolu (varsayılan: .md ile aynı ad, .pdf)")
     ap.add_argument("--font", type=float, default=11, help="Yazı boyutu pt (10–12 önerilir; 2 sayfaya sığdırmak için 10)")
+    ap.add_argument("--justify", action="store_true", help="Paragraf ve maddeleri iki yana yasla")
     a = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
     src = Path(a.md).resolve()
     pdf = Path(a.out).resolve() if a.out else src.with_suffix(".pdf")
     page = src.with_suffix(".html")
-    page.write_text(md_to_html(src.read_text(encoding="utf-8-sig"), pdf.stem, a.font), encoding="utf-8")
+    page.write_text(md_to_html(src.read_text(encoding="utf-8-sig"), pdf.stem, a.font, justify=a.justify), encoding="utf-8")
     print(f"HTML: {page}")
 
     browser = find_browser()

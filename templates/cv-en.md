@@ -9,20 +9,20 @@ Software engineer with 5 years of backend experience. Skilled in building scalab
 ## Work Experience
 
 **Senior Software Engineer** — Company Name, Istanbul
-03/2022 – Present
+03/2022 - Present
 - Built REST APIs with Python and FastAPI handling 2M requests per day; reduced response time by 35%.
 - Optimized PostgreSQL queries, cutting report generation from 40 minutes to 6 minutes.
 - Led a team of 4 engineers; introduced code review and reduced production bugs by 20%.
 
 **Software Engineer** — Previous Company, Ankara
-06/2019 – 02/2022
+06/2019 - 02/2022
 - Cut deployment time from 2 hours to 15 minutes using Docker and CI/CD (GitHub Actions).
 - Developed ETL pipelines processing customer data with 99.9% accuracy.
 
 ## Education
 
 **B.Sc. in Computer Engineering** — University Name, City
-09/2015 – 06/2019
+09/2015 - 06/2019
 
 ## Skills
 

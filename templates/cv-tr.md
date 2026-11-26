@@ -9,20 +9,20 @@ Backend geliştirme alanında 5 yıl deneyimli yazılım mühendisi. Python, SQL
 ## İş Deneyimi
 
 **Kıdemli Yazılım Mühendisi** — Şirket Adı, İstanbul
-03/2022 – Günümüz
+03/2022 - Günümüz
 - Günlük 2 milyon istek işleyen REST API'leri Python ve FastAPI ile geliştirdim; yanıt süresini %35 düşürdüm.
 - PostgreSQL sorgularını optimize ederek rapor üretim süresini 40 dakikadan 6 dakikaya indirdim.
 - 4 kişilik ekibe liderlik ettim; kod inceleme sürecini kurarak üretim hatalarını %20 azalttım.
 
 **Yazılım Mühendisi** — Önceki Şirket, Ankara
-06/2019 – 02/2022
+06/2019 - 02/2022
 - Docker ve CI/CD (GitHub Actions) ile dağıtım süresini 2 saatten 15 dakikaya düşürdüm.
 - Müşteri verilerini işleyen ETL süreçlerini yazdım ve %99,9 doğrulukla çalıştırdım.
 
 ## Eğitim
 
 **Bilgisayar Mühendisliği, Lisans** — Üniversite Adı, Şehir
-09/2015 – 06/2019
+09/2015 - 06/2019
 
 ## Yetenekler
 

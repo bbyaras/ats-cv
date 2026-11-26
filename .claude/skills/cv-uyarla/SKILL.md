@@ -63,6 +63,11 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
 `docs/ats-rehberi.md` kurallarına uy: tek sütun, standart başlıklar, tutarlı tarih, eylemle başlayan ve ölçülebilir maddeler, en fazla 2 sayfa.
 - İlana en uygun deneyimleri öne çıkar, özet bölümünü ilana göre yeniden yaz.
 - İlandaki terimleri, kullanıcı gerçekten yaptıysa, ilandaki yazımıyla kullan.
+- **Yankı tuzakları:** İlanın kelimelerini ikiye ayır. *Sert anahtar kelimeler* (araç, yöntem, sertifika, unvan, alan terimi) aynen kullanılır. *İlanın üslubu ve cümleleri* CV'ye taşınmaz:
+  - İlandan 5 veya daha fazla ardışık kelime kopyalama; cümleyi kullanıcının kendi deneyiminden yeniden yaz (hangi proje, ne yaptı, ne değişti). `ats_check.py` bunları "İlandan kopyalanmış ifadeler" başlığında listeler; hepsini gider.
+  - Kullanıcının mülakatta kendiliğinden kullanmayacağı gayriresmi veya pazarlama dilini (şirket sloganları, "About us" ifadeleri) yazma.
+  - **%100 eşleşme hedef değildir.** Eksik bir kelimeyi yalnızca skor için klişe cümleye veya yetenek satırına sıkıştırma; aynı ifadeyi tekrarlama. Kullanıcı bunu isterse riski (işe alımcıya ilandan kopyalanmış görünür, mülakatta kanıt istenir) önce söyle.
+- Tarih aralıklarını düz tireyle yaz (`03/2022 - 08/2024`), uzun tire (– —) kullanma.
 - **Asla uydurma:** olmayan deneyim, beceri, unvan, tarih, rakam ekleme. Eksik gereksinimler için kullanıcıya "Bu konuda deneyimin var mı?" diye sor; sadece evet derse ekle.
 - **CV'de olmayan ama kullanıcının eklemek istediği özellik** (beceri, proje, sertifika, deneyim) olursa eklemeden önce onay al: ne ekleneceğini ve nereye (hangi bölüme/maddeye) yazılacağını göster, "Bu doğru ve CV'ne eklememi onaylıyor musun?" diye sor. Onay gelmeden ekleme. Onaylanan her ekleme için somut detay iste (nerede, ne zaman, hangi araç, sonuç).
 - **Somut verileri artır:** Her deneyim maddesi için mümkün olduğunca sayı iste: yüzde artış/azalış, süre, hacim, bütçe, ekip büyüklüğü, kullanıcı/müşteri sayısı, tasarruf. Sayısı olmayan zayıf maddeleri listele ve kullanıcıya hedefli sorular sor ("Bu süreci kaç kişi kullandı?", "Ne kadar süre kısaldı?"). Tahmini rakamları kullanıcı "yaklaşık" olarak onaylarsa "~" veya "yaklaşık" ile yaz.
@@ -80,6 +85,7 @@ Cevaplardan hedef profilini çıkar (pozisyon, anahtar kelimeler, vurgulanacak d
   ```
   Betik Edge veya Chrome'u (Windows/Mac/Linux) kendisi bulur. Bulamazsa HTML üretir; kullanıcıya tarayıcıdan Yazdır → PDF yapmasını söyle. Sonra **son PDF'i** `python tools/ats_check.py output/Ad_Soyad_CV.pdf inputs/ilan.txt` ile yeniden kontrol et.
 - Çok sayfalı çıktıda sayfa sayısını kontrol et (en fazla 2).
+- **Sayfa yerleşimi:** `ats_check.py` PDF'te yalnız kalan başlığı, rolün ortasında başlayan sayfayı ve neredeyse boş son sayfayı uyarır. Bu metne dayalı yaklaşık bir kontroldür; PDF'i ayrıca gözünle de aç ve bak. Düzeltmek için önce ilanla en az ilgili satırları kısalt.
 
 ## 6. İK uzmanı incelemesi (son adım)
 CV hazır ve format seçildikten sonra `AskUserQuestion` ile sor: "CV'ni profesyonel bir İK uzmanı gözüyle de incelememi ister misin?" (Evet / Hayır). Hayır derse bitir; evet derse incele.

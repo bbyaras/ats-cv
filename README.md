@@ -43,6 +43,8 @@ python tools/ats_check.py templates/cv-tr.md examples/ilan.txt
 
 CV `.md`, `.txt`, `.docx` veya `.pdf` olabilir (PDF için `pip install pypdf` veya `pdftotext` gerekir); teslim edeceğin son dosyayı da kontrol et. Türkçe ekler (yönetim/yönetimi) ve büyük harfli kelimeler (SATIŞ) eşleşir.
 
+Ayrıca ilandan kopyalanmış ifadeleri (5+ kelime), uzun tireli tarihleri ve PDF'te sayfa yerleşimi sorunlarını (yaklaşık) uyarır.
+
 Çıktı: yapısal uyarılar, ilan anahtar kelime eşleşmesi (%), eksik kelimeler ve **ATS sonucu (GEÇER / RİSKLİ / GEÇEMEZ)**. İlan vermezsen yalnızca yapı kontrol edilir. Sonuç GEÇER değilse çıkış kodu 1 olur. Bu bir ön tahmindir, geçiş garantisi vermez.
 
 4. PDF üretmek için `templates/cv.html` dosyasını doldurup tarayıcıdan **Yazdır → PDF olarak kaydet** yap (metin seçilebilir kalır).

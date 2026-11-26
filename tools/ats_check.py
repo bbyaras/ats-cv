@@ -99,7 +99,7 @@ def read_pdf(p: Path) -> tuple[str, int | None]:
     try:
         from pypdf import PdfReader
         r = PdfReader(str(p))
-        return "\n".join((pg.extract_text() or "") for pg in r.pages), len(r.pages)
+        return "\f".join((pg.extract_text() or "") for pg in r.pages), len(r.pages)  # \f: sayfa sınırı
     except ImportError:
         pass
     exe = shutil.which("pdftotext")
@@ -176,6 +176,74 @@ def structure_warnings(raw: str, pages: int | None = None) -> list[tuple[bool, s
     return out
 
 
+_DATE = re.compile(r"(?:19|20)\d{2}")
+_DATE_DASH = re.compile(r"(?:19|20)\d{2}[ \t]*[–—]|[–—][ \t]*(?:[^\W\d_]+\.?[ \t]+|\d{2}/)?(?:19|20)\d{2}")
+
+
+def date_dash_warnings(raw: str) -> list[tuple[bool, str]]:
+    n = sum(1 for line in raw.splitlines() if _DATE_DASH.search(line))
+    if n:
+        return [(False, f"{n} satırda tarih uzun tireyle (– —) yazılmış; bazı sistemler tarihi içe aktaramayabilir, düz '-' kullan.")]
+    return []
+
+
+def layout_warnings(raw: str) -> list[tuple[bool, str]]:
+    """PDF sayfa yerleşimi için metne dayalı, yaklaşık kontrol (sayfalar form feed ile ayrılır)."""
+    pages = [[l.strip() for l in p.split("\n") if l.strip()] for p in raw.split("\f")]
+    pages = [p for p in pages if p]
+    if len(pages) < 2:
+        return []
+
+    def is_heading(line: str) -> bool:
+        return line.isupper() and len(line.split()) <= 5
+
+    out = []
+    for i in range(len(pages) - 1):
+        last, nxt = pages[i][-1], pages[i + 1]
+        if is_heading(last):
+            out.append((False, f"{i + 1}. sayfanın sonunda '{last}' başlığı yalnız kalmış."))
+        elif any(_DATE.search(l) for l in pages[i][-2:]):
+            out.append((False, f"{i + 1}. sayfa tarih içeren bir satırla bitiyor; maddeleri sonraki sayfada kalmış olabilir, PDF'e bak."))
+        elif not (is_heading(nxt[0]) or any(_DATE.search(l) for l in nxt[:3])):
+            out.append((False, f"{i + 2}. sayfa bir bölümün veya rolün ortasında başlıyor olabilir; PDF'e bak."))
+    words = [len(" ".join(p).split()) for p in pages]
+    if words[-1] < 0.15 * max(words):
+        out.append((False, f"Son sayfa neredeyse boş ({words[-1]} kelime); kısaltıp sayfa sayısını azalt."))
+    return out
+
+
+ECHO_WORDS = 5  # ilandan bu kadar ardışık kelime kopyalanırsa uyar
+
+
+def echo_phrases(cv: str, ilan: str, n: int = ECHO_WORDS) -> list[str]:
+    """İlandan n+ ardışık kelimeyle kopyalanmış ifadeler. Noktalama (virgül dahil) diziyi böler,
+    böylece araç listeleri sayılmaz."""
+    def segments(text: str):
+        for seg in re.split(r"[.,;:!?()|•\n\f]+", text):
+            toks = tokens_surface(seg)
+            if toks:
+                yield toks
+
+    grams = {tuple(k for k, _, _ in seg[i:i + n]) for seg in segments(ilan) for i in range(len(seg) - n + 1)}
+    found: list[str] = []
+    # PDF'teki satır kaydırması ifadeyi bölmesin: küçük harfle başlayan satır öncekine eklenir
+    for seg in segments(re.sub(r"\n(?=[a-zçğıöşü])", " ", cv)):
+        keys = tuple(k for k, _, _ in seg)
+        i = 0
+        while i <= len(keys) - n:
+            if keys[i:i + n] not in grams:
+                i += 1
+                continue
+            end = i + n
+            while end < len(keys) and keys[end - n + 1:end + 1] in grams:
+                end += 1
+            phrase = " ".join(shown for _, shown, _ in seg[i:end])
+            if phrase not in found:
+                found.append(phrase)
+            i = end
+    return found
+
+
 MIN_ESLESME = 50  # % — sezgisel eşik; altı "riskli"
 
 
@@ -190,7 +258,7 @@ def main() -> int:
     cv, pages, extra = load(a.cv)
 
     print("== Yapı kontrolü ==")
-    warns = extra + structure_warnings(cv, pages)
+    warns = extra + structure_warnings(cv, pages) + date_dash_warnings(cv) + layout_warnings(cv)
     critical = [m for c, m in warns if c]
     minor = [m for c, m in warns if not c]
     for m in critical:
@@ -226,6 +294,13 @@ def main() -> int:
             print("Bulunan :", ", ".join(found) or "-")
             print("Eksik   :", ", ".join(missing) or "-")
             print("\nNot: Eksik kelimeleri yalnızca gerçekten sahipsen ekle.")
+
+        echoes = echo_phrases(cv, ilan)
+        if echoes:
+            print(f"\n== İlandan kopyalanmış ifadeler ({ECHO_WORDS}+ kelime) ==")
+            for e in echoes:
+                print(f'- "{e}"')
+            print("Araç ve yöntem adları aynen kalsın; cümleleri kendi deneyiminle yeniden yaz.")
 
     if critical:
         verdict, code = "GEÇEMEZ", 1
